@@ -129,7 +129,38 @@ gunzip pixel_clusters_d16401.out.gz
 python3 csa_effects_stream.py pixel_clusters_d16401.out pulse_response_cadence_diff_charges.csv
 ```
 
-33Author
+## Output File Format
+
+Header [80 characters]
+x-pitch [um] y-pitch [um] thickness [um] time-slice-step)[ps]
+<cluster>
+x-entry y-entry z-entry n_x n_y n_z number_eh_pairs y_module track_q_sign*pT
+<time slice t_0>
+pix_00_00 pix_00_01 pix_00_02 … pix_00_20
+pix_01_00 pix_01_01 pix_00_02 … pix_01_20
+.
+.
+.
+pix_12_00 pix_12_01 pix_12_02 … pix_12_20
+<time slice t_1>
+.
+.
+.
+<time slice t_16>
+pix_00_00 pix_00_01 pix_00_02 … pix_00_20
+pix_01_00 pix_01_01 pix_00_02 … pix_01_20
+.
+.
+.
+pix_12_00 pix_12_01 pix_12_02 … pix_12_20
+<cluster>
+x-entry y-entry z-entry n_x n_y n_z number_eh_pairs y_module track_q_sign*pT
+.
+.
+.
+(n_x, n_y, n_z) is the track direction. The pre-amp output voltages pix_yy_xx are in milli-volts. The track position at the pixel midplane (x-entry+0.5*t*n_x/n_z, y-entry+0.5*t*n_y/n_z, z entry+0.5*t*sign(n_z)) is always in the 3x3 ar- ray about the center pixel pix_06_10 [it is uniformly distributed within the 3x3 pixel area]. y_-module is the local y of the track midlpane coordinate in L1 [varies from -8.1 mm to +8.1 mm] and track_q_sign*pT is the product of the track pT and sign of the track charge. Flipped modules have z-entry=0 and n_z > 0. Unflipped modules have z-entry=100 [um] and n_z < 0.
+
+## Author
 
 Harshul Gupta
 CERN / SmartPixels Collaboration
