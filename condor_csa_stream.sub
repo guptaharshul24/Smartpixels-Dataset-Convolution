@@ -4,7 +4,7 @@ arguments  = $(input_file)
 
 should_transfer_files = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files = csa_effects_stream.py, helpers_stream.py, run_csa_stream.sh, pulse_response_cadence_diff_charges.csv
+transfer_input_files = csa_effects_stream.py, helpers_stream.py, run_csa_stream.sh
 transfer_output_files = ""
 
 output = logs/job_$(Cluster)_$(Process).out

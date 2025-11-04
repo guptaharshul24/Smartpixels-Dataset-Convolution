@@ -44,4 +44,5 @@ xrdcp -f ${OUTPUT_FILE}.gz root://eosproject.cern.ch//eos/project/s/smartpix-box
 echo "=== Cleaning up local scratch ==="
 rm -f *.gz pulse_response_cadence_diff_charges.csv
 
+
 echo "=== Job completed successfully for ${BASENAME} ==="

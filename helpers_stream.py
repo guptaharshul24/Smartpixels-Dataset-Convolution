@@ -16,6 +16,7 @@ TMAX = 375e-9  # end of pulse response
 T_STEP = np.float64(10e-12)  # 10 ps
 SAVE_STEP = np.float64(200e-12)  # downsampled step (200 ps)
 TRIM_MAX = 6e-9  # trim to 6 ns window
+time_step_ps = int(SAVE_STEP * 1e12)
 
 # ---------------------------------------------
 # PULSE RESPONSE LOADING
@@ -151,6 +152,16 @@ def save_convolved_values(conv_clusters, input_file, output_file, meta, append=F
     if not append and os.path.exists(input_file):
         with open(input_file, "r") as fin, open(output_file, "w") as fout:
             for line in fin:
+                # When you find the line with time-slice-step (4 numbers), modify it
+                parts = line.strip().split()
+                if len(parts) == 4:
+                    try:
+                        float(parts[3])  # ensure it’s numeric
+                        parts[3] = f"{time_step_ps:.6f}"
+                        fout.write(" ".join(parts) + "\n")
+                        continue
+                    except ValueError:
+                        pass
                 # Copy all lines until first <cluster>
                 if line.strip().startswith("<cluster>"):
                     break
