@@ -22,7 +22,7 @@ source /cvmfs/sft.cern.ch/lcg/views/LCG_105/x86_64-el9-gcc13-opt/setup.sh
 
 # ---- Copy input from EOS ----
 echo "=== Copying input from EOS ==="
-xrdcp -f root://eosuser.cern.ch//eos/user/d/dshekar/dataset_3s_10ps/dataset_3s_10ps_50x12P5/${INPUT_GZ} .
+xrdcp -f root://eosuser.cern.ch//eos/xyz/dataset_3s_10ps/dataset_3s_10ps_50x12P5/${INPUT_GZ} .
 
 # ---- Unzip input ----
 echo "=== Unzipping input ==="
@@ -30,7 +30,7 @@ gunzip ${INPUT_GZ}
 
 # ---- Copy pulse response CSV ----
 echo "=== Copying pulse response CSV ==="
-xrdcp -f root://eosuser.cern.ch//eos/user/h/harshul/convolution_datasets/pulse_response_cadence_diff_charges.csv .
+xrdcp -f root://eosuser.cern.ch//eos/xyz/convolution_datasets/pulse_response_cadence_diff_charges.csv .
 
 # ---- Run CSA effects stream ----
 echo "=== Running CSA Stream ==="
